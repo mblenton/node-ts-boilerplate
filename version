@@ -1,0 +1,26 @@
+
+[4m[1m[32mtypescript[39m@[32m3.0.3[39m[22m[24m | [32mApache-2.0[39m | deps: [32mnone[39m | versions: [33m1087[39m
+TypeScript is a language for application scale JavaScript development
+[36mhttp://typescriptlang.org/[39m
+
+keywords: [33mTypeScript[39m, [33mMicrosoft[39m, [33mcompiler[39m, [33mlanguage[39m, [33mjavascript[39m
+
+bin: [33mtsc[39m, [33mtsserver[39m
+
+dist
+.tarball: [36mhttps://registry.npmjs.org/typescript/-/typescript-3.0.3.tgz[39m
+.shasum: [33m4853b3e275ecdaa27f78fda46dc273a7eb7fc1c8[39m
+.integrity: [33msha512-kk80vLW9iGtjMnIv11qyxLqZm20UklzuR2tL0QAnDIygIUIemcZMxlMWudl9OOt76H3ntVzcTiddQ1/pAAJMYg==[39m
+.unpackedSize: [33m41.0[39m MB
+
+maintainers:
+- [33mtypescript[39m <[36mtypescript@microsoft.com[39m>
+
+dist-tags:
+[1m[32mbeta[39m[22m: 2.0.0
+[1m[32minsiders[39m[22m: 3.0.3-insiders.20180829
+[1m[32mlatest[39m[22m: 3.0.3
+[1m[32mnext[39m[22m: 3.1.0-dev.20180901
+[1m[32mrc[39m[22m: 3.0.0-rc
+
+published [33m6 days ago[39m by [33mtypescript[39m <[36mtypescript@microsoft.com[39m>

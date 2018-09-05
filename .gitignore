@@ -1,0 +1,15 @@
+# Add any directories, files, or patterns you don't want to be tracked by version # OSX
+#
+.DS_Store
+
+# node.js
+#
+node_modules/
+npm-debug.log.*
+
+# IDE
+.vscode/
+
+.nyc_output/
+/logs
+/dist

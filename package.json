@@ -1,0 +1,82 @@
+{
+  "name": "@betoholic/bh-node-gamelist",
+  "version": "1.0.0",
+  "description": "node.js TypeScript Boilerplate",
+  "main": "/dist/server.ts",
+  "scripts": {
+    "start": "npm run serve",
+    "build": "npm run tslint && npm run build-ts",
+    "dev": "npm run build && npm run serve-debug",
+    "serve": "node dist/server.js",
+    "serve-debug": "nodemon --inspect dist/server.js",
+    "test": "nyc mocha --opts ./mocha.opts $(find . -name 'test_*.spec.ts' ! -ipath '*node_modules*') -t 5000",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "build-ts": "tsc",
+    "watch-ts": "tsc -w"
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "exclude": [
+      "**/*.spec.ts",
+      "**/dist/**",
+      "src/server.ts"
+    ],
+    "reporter": [
+      "text"
+    ],
+    "all": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org:mblenton/bh-node-gamelist.git"
+  },
+  "keywords": [
+    "boilerplate",
+    "typescript",
+    "node.js",
+    "mocha",
+    "chai",
+    "istambul",
+    "express",
+    "prettier",
+    "vscode",
+    "tslint"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.3",
+    "dotenv": "^6.0.0",
+    "errorhandler": "^1.5.0",
+    "express": "4.16.3",
+    "express-handlebars": "^3.0.0",
+    "express-validator": "^5.3.0",
+    "winston": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.17.0",
+    "@types/chai": "^4.1.4",
+    "@types/compression": "0.0.36",
+    "@types/dotenv": "^4.0.3",
+    "@types/errorhandler": "0.0.32",
+    "@types/express": "^4.16.0",
+    "@types/express-handlebars": "0.0.30",
+    "@types/mocha": "5.2.5",
+    "@types/node": "10.9.4",
+    "@types/supertest": "^2.0.5",
+    "@types/winston": "^2.4.4",
+    "chai": "^4.1.2",
+    "mocha": "5.2.0",
+    "nodemon": "^1.18.4",
+    "nyc": "^13.0.1",
+    "source-map-support": "^0.5.9",
+    "supertest": "^3.2.0",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "typescript": "3.0.3"
+  }
+}
