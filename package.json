@@ -1,5 +1,5 @@
 {
-  "name": "@betoholic/bh-node-gamelist",
+  "name": "node-ts-boilerplate",
   "version": "1.0.0",
   "description": "node.js TypeScript Boilerplate",
   "main": "/dist/server.ts",
