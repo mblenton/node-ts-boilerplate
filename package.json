@@ -22,7 +22,8 @@
     "exclude": [
       "**/*.spec.ts",
       "**/dist/**",
-      "src/server.ts"
+      "src/server.ts",
+      "copyStaticAssets.ts"
     ],
     "reporter": [
       "text"
