@@ -2,7 +2,7 @@
   "name": "node-ts-boilerplate",
   "version": "1.0.0",
   "description": "node.js TypeScript Boilerplate",
-  "main": "/dist/server.ts",
+  "main": "/dist/server.js",
   "scripts": {
     "start": "npm run serve",
     "build": "npm run tslint && npm run build-ts && npm run copy-static-assets",
