@@ -7,9 +7,6 @@
 node_modules/
 npm-debug.log.*
 
-# IDE
-.vscode/
-
 .nyc_output/
 /logs
 /dist
