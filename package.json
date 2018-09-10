@@ -9,7 +9,8 @@
     "dev": "npm run build && npm run serve-debug",
     "serve": "node dist/server.js",
     "serve-debug": "nodemon --inspect dist/server.js",
-    "test": "nyc mocha --opts ./mocha.opts $(find . -name 'test_*.spec.ts' ! -ipath '*node_modules*') -t 5000",
+    "test": "mocha --opts ./mocha.opts $(find . -name 'test_*.spec.ts' ! -ipath '*node_modules*') -t 5000 --exit",
+    "cover": "nyc npm test",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "copy-static-assets": "ts-node copyStaticAssets.ts",
     "build-ts": "tsc",
@@ -21,6 +22,7 @@
     ],
     "exclude": [
       "**/*.spec.ts",
+      "**/*.json.ts",
       "**/dist/**",
       "src/server.ts",
       "copyStaticAssets.ts"
