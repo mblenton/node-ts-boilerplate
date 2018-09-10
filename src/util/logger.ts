@@ -1,7 +1,11 @@
 import * as winston from 'winston';
 
 const logger = winston.createLogger({
-  format: winston.format.json(),
+  format: winston.format.combine(
+    winston.format.label({ label: 'node-ts-boilerplate' }),
+    winston.format.timestamp(),
+    winston.format.json()
+  ),
   transports: [
     new(winston.transports.Console)({
       level: process.env.NODE_ENV === 'production'
@@ -23,7 +27,12 @@ const logger = winston.createLogger({
       .File({ filename: './logs/debug.log', level: 'debug' }),
     new winston
       .transports
-      .File({ filename: './logs/error.log', level: 'error', handleExceptions: true })
+      .File({ filename: './logs/error.log', level: 'error' })
+  ],
+  exceptionHandlers: [
+    new winston
+      .transports
+      .File({ filename: './logs/exceptions.log' })
   ]
 });
 
