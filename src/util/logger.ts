@@ -1,39 +1,62 @@
 import * as winston from 'winston';
+// import winstonRedis from 'winston-redis';
 
-const logger = winston.createLogger({
+// const transportRedis = new (winstonRedis)({ host: '127.0.0.1', port: 6379 });
+
+const transportConsole = new winston.transports.Console({
   format: winston.format.combine(
-    winston.format.label({ label: 'node-ts-boilerplate' }),
+    winston.format.colorize(),
+    winston.format.simple()
+  ),
+  handleExceptions: true
+});
+
+const transportFileDebug = new winston.transports.File({
+  handleExceptions: true,
+  format: winston.format.combine(
+    winston.format.label({ label: 'bh-node-gamelist' }),
     winston.format.timestamp(),
     winston.format.json()
   ),
+  filename: './logs/debug.log'
+});
+
+const transportFileError = new winston.transports.File({
+  handleExceptions: true,
+  format: winston.format.combine(
+    winston.format.label({ label: 'bh-node-gamelist' }),
+    winston.format.timestamp(),
+    winston.format.json()
+  ),
+  filename: './logs/error.log',
+  level: 'error'
+});
+
+const transportFileException = new winston.transports.File({
+  format: winston.format.combine(
+    winston.format.label({ label: 'bh-node-gamelist' }),
+    winston.format.timestamp(),
+    winston.format.json()
+  ),
+  handleExceptions: true,
+  filename: './logs/exceptions.log'
+});
+
+const logger = winston.createLogger({
+  level: process.env.NODE_ENV === 'production'
+    ? 'error'
+    : 'debug',
   transports: [
-    new(winston.transports.Console)({
-      level: process.env.NODE_ENV === 'production'
-        ? 'error'
-        : 'debug',
-      handleExceptions: true,
-      format: winston
-        .format
-        .simple()
-    }),
-    new winston
-      .transports
-      .Console(),
-    new winston
-      .transports
-      .File({ filename: './logs/combined.log' }),
-    new winston
-      .transports
-      .File({ filename: './logs/debug.log', level: 'debug' }),
-    new winston
-      .transports
-      .File({ filename: './logs/error.log', level: 'error' })
+    transportConsole,
+    transportFileError,
+    transportFileDebug,
+    // transportRedis
   ],
   exceptionHandlers: [
-    new winston
-      .transports
-      .File({ filename: './logs/exceptions.log' })
-  ]
+      transportConsole,
+      transportFileException
+  ],
+  exitOnError: false,
 });
 
 export default logger;
