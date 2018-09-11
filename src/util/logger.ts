@@ -1,7 +1,7 @@
 import * as winston from 'winston';
-// import winstonRedis from 'winston-redis';
+import winstonDailyRotateFile from 'winston-daily-rotate-file';
 
-// const transportRedis = new (winstonRedis)({ host: '127.0.0.1', port: 6379 });
+const level = process.env.NODE_ENV === 'production' ? 'error' : 'debug';
 
 const transportConsole = new winston.transports.Console({
   format: winston.format.combine(
@@ -11,50 +11,30 @@ const transportConsole = new winston.transports.Console({
   handleExceptions: true
 });
 
-const transportFileDebug = new winston.transports.File({
+const transportFileDebug = new winstonDailyRotateFile ({
   handleExceptions: true,
   format: winston.format.combine(
     winston.format.label({ label: 'bh-node-gamelist' }),
     winston.format.timestamp(),
     winston.format.json()
   ),
-  filename: './logs/debug.log'
+  zippedArchive: true,
+  maxSize: '20m',
+  maxFiles: '14d',
+  filename: `./logs/${level}-%DATE%.log`,
+  datePattern: 'DD-MM-YYYY',
+  level
 });
 
-const transportFileError = new winston.transports.File({
-  handleExceptions: true,
-  format: winston.format.combine(
-    winston.format.label({ label: 'bh-node-gamelist' }),
-    winston.format.timestamp(),
-    winston.format.json()
-  ),
-  filename: './logs/error.log',
-  level: 'error'
-});
-
-const transportFileException = new winston.transports.File({
-  format: winston.format.combine(
-    winston.format.label({ label: 'bh-node-gamelist' }),
-    winston.format.timestamp(),
-    winston.format.json()
-  ),
-  handleExceptions: true,
-  filename: './logs/exceptions.log'
-});
 
 const logger = winston.createLogger({
-  level: process.env.NODE_ENV === 'production'
-    ? 'error'
-    : 'debug',
   transports: [
     transportConsole,
-    transportFileError,
-    transportFileDebug,
-    // transportRedis
+    transportFileDebug
   ],
   exceptionHandlers: [
       transportConsole,
-      transportFileException
+      transportFileDebug
   ],
   exitOnError: false,
 });
