@@ -9,7 +9,7 @@
     "dev": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\"",
     "serve": "node dist/server.js",
     "serve-debug": "nodemon --inspect dist/server.js",
-    "test": "mocha --opts ./mocha.opts $(find . -name 'test_*.spec.ts' ! -ipath '*node_modules*') -t 5000 --exit",
+    "test": "NODE_ENV=test mocha --opts ./mocha.opts $(find . -name 'test_*.spec.ts' ! -ipath '*node_modules*') -t 5000 --exit",
     "cover": "nyc npm test",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "copy-static-assets": "ts-node copyStaticAssets.ts",
