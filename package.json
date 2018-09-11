@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run serve",
     "build": "npm run tslint && npm run build-ts && npm run copy-static-assets",
-    "dev": "npm run build && npm run serve-debug",
+    "dev": "npm run tslint && npm run watch-ts && npm run serve-debug",
     "serve": "node dist/server.js",
     "serve-debug": "nodemon --inspect dist/server.js",
     "test": "mocha --opts ./mocha.opts $(find . -name 'test_*.spec.ts' ! -ipath '*node_modules*') -t 5000 --exit",
