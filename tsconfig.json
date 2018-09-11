@@ -3,12 +3,16 @@
     "target": "es6",
     "module": "commonjs",
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "outDir": "dist",
     "noImplicitAny": true,
     "sourceMap": true,
     "moduleResolution": "node",
     "removeComments": true,
-    "typeRoots": ["node_modules/@types"]
+    "baseUrl": ".",
+    "paths": {
+      "*": ["node_modules/*", "src/types/*"]
+    }
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]

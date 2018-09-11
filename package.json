@@ -6,10 +6,11 @@
   "scripts": {
     "start": "npm run serve",
     "build": "npm run tslint && npm run build-ts && npm run copy-static-assets",
-    "dev": "npm run build && npm run serve-debug",
+    "dev": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\"",
     "serve": "node dist/server.js",
     "serve-debug": "nodemon --inspect dist/server.js",
-    "test": "nyc mocha --opts ./mocha.opts $(find . -name 'test_*.spec.ts' ! -ipath '*node_modules*') -t 5000",
+    "test": "NODE_ENV=test mocha --opts ./mocha.opts $(find . -name 'test_*.spec.ts' ! -ipath '*node_modules*') -t 5000 --exit",
+    "cover": "nyc npm test",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "copy-static-assets": "ts-node copyStaticAssets.ts",
     "build-ts": "tsc",
@@ -21,6 +22,7 @@
     ],
     "exclude": [
       "**/*.spec.ts",
+      "**/*.json.ts",
       "**/dist/**",
       "src/server.ts",
       "copyStaticAssets.ts"
@@ -56,7 +58,9 @@
     "express": "4.16.3",
     "express-handlebars": "^3.0.0",
     "express-validator": "^5.3.0",
-    "winston": "^3.1.0"
+    "morgan": "^1.9.0",
+    "winston": "^3.1.0",
+    "winston-daily-rotate-file": "^3.3.2"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.0",
@@ -67,11 +71,13 @@
     "@types/express": "^4.16.0",
     "@types/express-handlebars": "0.0.30",
     "@types/mocha": "5.2.5",
+    "@types/morgan": "^1.7.35",
     "@types/node": "10.9.4",
     "@types/shelljs": "^0.8.0",
     "@types/supertest": "^2.0.5",
     "@types/winston": "^2.4.4",
     "chai": "^4.1.2",
+    "concurrently": "^4.0.1",
     "mocha": "5.2.0",
     "nodemon": "^1.18.4",
     "nyc": "^13.0.1",
