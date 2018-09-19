@@ -1,4 +1,5 @@
 {
+  "extends": ["tslint:latest", "tslint-config-prettier"],
   "rules": {
     "class-name": true,
     "comment-format": [true, "check-space"],
@@ -37,7 +38,6 @@
     "no-trailing-whitespace": true,
     "no-null-keyword": true,
     "prefer-const": true,
-    "jsdoc-format": true,
-    "extends": ["tslint:latest", "tslint-config-prettier"]
+    "jsdoc-format": true
   }
 }
