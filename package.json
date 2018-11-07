@@ -1,7 +1,7 @@
 {
-  "name": "node-ts-boilerplate",
+  "name": "node-typescript-boilerplate-starter",
   "version": "1.0.0",
-  "description": "node.js TypeScript Boilerplate",
+  "description": "node.js TypeScript Boilerplate / Starter",
   "main": "/dist/server.js",
   "scripts": {
     "start": "npm run serve",
@@ -37,8 +37,8 @@
     "url": "https://github.com/mblenton/node-ts-boilerplate.git"
   },
   "keywords": [
-    "boilerplate",
-    "typescript",
+    "typescript boilerplate",
+    "typescript starter",
     "node.js",
     "mocha",
     "chai",
