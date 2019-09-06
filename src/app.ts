@@ -28,18 +28,18 @@ app.set('port', process.env.PORT || 3000);
 app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(expressValidator());
+// app.use(expressValidator());
 
 app.use(express.static(path.join(__dirname, 'public'), {maxAge: 31557600000})); /** * Primary app routes. */
 app.use(routes);
 class MyStream {
-  write(message: string) {
+  private write(message: string) {
     logger.info(message);
   }
 }
 
 const myStream = new MyStream();
-app.use(morgan('{"remote_addr": ":remote-addr", "remote_user": ":remote-user", "date": ":date[clf]", "method": ":method", "url": ":url", "http_version": ":http-version", "status": ":status", "result_length": ":res[content-length]", "referrer": ":referrer", "user_agent": ":user-agent", "response_time": ":response-time"}', { stream: myStream }));
+app.use(morgan('dev'));
 
 if (process.env.NODE_ENV !== 'production') {
   logger.debug('Logging initialized at debug level');

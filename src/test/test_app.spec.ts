@@ -24,6 +24,7 @@ describe('test GET and POST', () => {
       .send(JSON.stringify(myTestJson))
       .then((res: any) => {
         expect(res.body).have.property('success');
+        // tslint:disable-next-line:no-unused-expression
         expect(res.body.success).to.be.true;
         expect(res.body.data).to.be.a('object');
         expect(res.body.data.username).to.equal('milan.rakos@gmail.com');

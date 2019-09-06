@@ -1,5 +1,5 @@
 import express from 'express';
-import { check } from 'express-validator/check';
+import { check } from 'express-validator';
 import * as homeController from '../../controllers/home';
 
 const router = express.Router();

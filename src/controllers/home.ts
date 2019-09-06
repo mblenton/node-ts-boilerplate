@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { validationResult } from 'express-validator/check';
+import { validationResult } from 'express-validator';
 
 export const index = (req: Request, res: Response) => {
   res.render('layouts/home', {
