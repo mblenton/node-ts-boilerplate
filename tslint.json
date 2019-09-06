@@ -1,6 +1,10 @@
 {
+  "extends": ["tslint:latest", "tslint-config-prettier"],
   "rules": {
     "class-name": true,
+    "ordered-imports": false,
+    "no-console": false,
+    "object-literal-sort-keys": false,
     "comment-format": [true, "check-space"],
     "indent": [true, "spaces"],
     "one-line": [true, "check-open-brace", "check-whitespace"],
@@ -37,7 +41,6 @@
     "no-trailing-whitespace": true,
     "no-null-keyword": true,
     "prefer-const": true,
-    "jsdoc-format": true,
-    "extends": ["tslint:latest", "tslint-config-prettier"]
+    "jsdoc-format": true
   }
 }
