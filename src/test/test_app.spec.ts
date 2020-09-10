@@ -1,33 +1,30 @@
-import request from 'supertest';
-import { expect } from 'chai';
-import app from '../app';
+import request from "supertest";
+import { expect } from "chai";
+import app from "../app";
 
 // interface Iresponse {
 //   body: { success: boolean; data: { username: string; password: string; }
 // };
 
-describe('test GET and POST', () => {
-  it('should return 200 OK', () => {
-    return request(app)
-      .get('/')
-      .expect(200);
+describe("test GET and POST", () => {
+  it("should return 200 OK", () => {
+    return request(app).get("/").expect(200);
   });
 
-  it('should return body in json', () => {
+  it("should return body in json", () => {
     const myTestJson = {
-      username: 'milan.rakos@gmail.com',
-      password: '377773'
+      username: "milan.rakos@gmail.com",
+      password: "377773",
     };
     return request(app)
-      .post('/user')
-      .type('json')
+      .post("/user")
+      .type("json")
       .send(JSON.stringify(myTestJson))
-      .then((res: any) => {
-        expect(res.body).have.property('success');
-        // tslint:disable-next-line:no-unused-expression
+      .then((res) => {
+        expect(res.body).have.property("success");
         expect(res.body.success).to.be.true;
-        expect(res.body.data).to.be.a('object');
-        expect(res.body.data.username).to.equal('milan.rakos@gmail.com');
+        expect(res.body.data).to.be.a("object");
+        expect(res.body.data.username).to.equal("milan.rakos@gmail.com");
       });
   });
 });

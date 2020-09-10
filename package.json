@@ -6,14 +6,13 @@
   "scripts": {
     "start": "npm run serve",
     "clean": "shx rm -rf dist/",
-    "build": "npm run clean && npm run tslint && npm run build-ts && npm run copy-static-assets",
+    "build": "npm run clean && npm run lint && npm run build-ts && npm run copy-static-assets",
     "dev": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\"",
     "serve": "node dist/server.js",
     "serve-debug": "nodemon --inspect dist/server.js",
     "test": "NODE_ENV=test mocha --opts ./mocha.opts $(find . -name 'test_*.spec.ts' ! -ipath '*node_modules*') -t 5000 --exit",
     "cover": "nyc npm test",
-    "tslint": "tslint -c ./tslint.json -p ./tsconfig.json",
-    "tslint-check": "tslint-config-prettier-check ./tslint.json",
+    "lint": "eslint --fix './src/**/*.ts'",
     "copy-static-assets": "ts-node copyStaticAssets.ts",
     "build-ts": "tsc",
     "watch-ts": "tsc -w"
@@ -78,7 +77,12 @@
     "@types/node": "14.6.4",
     "@types/shelljs": "^0.8.8",
     "@types/supertest": "^2.0.10",
+    "@typescript-eslint/eslint-plugin": "^4.1.0",
+    "@typescript-eslint/parser": "^4.1.0",
     "concurrently": "^5.3.0",
+    "eslint": "^7.8.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
     "mocha": "8.1.3",
     "nodemon": "^2.0.4",
     "nyc": "^15.1.0",
@@ -87,8 +91,6 @@
     "shx": "^0.3.2",
     "source-map-support": "^0.5.19",
     "ts-node": "^9.0.0",
-    "tslint": "^6.1.3",
-    "tslint-config-prettier": "^1.18.0",
     "typescript": "4.0.2"
   }
 }
